@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librarian Dashboard | GyaanKosh</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="logo">
+            <i class="fa-solid fa-book-open-reader"></i> GyaanKosh<span>Admin</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="switchTab('requests', this)">Requests</a></li>
+            <li><a href="#" onclick="switchTab('issued', this)">Issued Books</a></li>
+            <li><a href="#" onclick="switchTab('catalog', this)">Manage Books</a></li>
+            <li><a href="#" style="color: #ef4444;" onclick="logout()">Logout</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <!-- Section: Issue Requests -->
+        <section id="requests-section" class="dashboard-section active">
+            <div class="section-header">
+                <h2>Student Issue Requests</h2>
+                <p>Manage pending book requests from students.</p>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Book Title</th>
+                            <th>Date Requested</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Issued Books -->
+        <section id="issued-section" class="dashboard-section" style="display: none;">
+            <div class="section-header">
+                <h2>Issued Books</h2>
+                <p>History of approved book requests.</p>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Book Title</th>
+                            <th>Type</th>
+                            <th>Date Issued</th>
+                        </tr>
+                    </thead>
+                    <tbody id="issuedTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Manage Catalog -->
+        <section id="catalog-section" class="dashboard-section" style="display: none;">
+            <div class="section-header">
+                <h2>Book Catalog</h2>
+                <button class="btn primary" id="addBookBtn"><i class="fa-solid fa-plus"></i> Add New Book</button>
+            </div>
+
+            <!-- Add Book Form (Hidden by default) -->
+            <div class="add-book-form" id="addBookForm">
+                <h3>Add New Book</h3>
+                <div class="form-grid">
+                    <input type="text" id="newBookTitle" placeholder="Book Title">
+                    <input type="text" id="newBookAuthor" placeholder="Author">
+                    <input type="text" id="newBookCategory" placeholder="Category">
+                    <input type="number" id="newBookQty" placeholder="Quantity">
+                </div>
+                <div class="form-actions">
+                    <button class="btn primary" onclick="addNewBook()">Save Book</button>
+                    <button class="btn secondary" onclick="toggleAddForm()">Cancel</button>
+                </div>
+            </div>
+
+            <div class="book-grid" id="bookGrid">
+                <!-- Book Cards Populated by JS -->
+                <div class="book-card">
+                    <div class="book-icon"><i class="fa-solid fa-book"></i></div>
+                    <div class="book-info">
+                        <h4>The Great Gatsby</h4>
+                        <p>F. Scott Fitzgerald</p>
+                        <span class="badge">Fiction</span>
+                    </div>
+                    <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="librarian.js"></script>
+</body>
+</html>

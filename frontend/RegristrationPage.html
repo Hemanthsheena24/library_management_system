@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | GyaanKosh Library</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+        background: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* --- Animated Background --- */
+    .area {
+        position: fixed;
+        width: 100%; height: 100vh;
+        z-index: -1;
+        background: linear-gradient(to left, #4f46e5, #0f172a);
+    }
+
+    .circles {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        overflow: hidden;
+    }
+
+    .circles li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px; height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        animation: animate 25s linear infinite;
+        bottom: -150px;
+    }
+
+    @keyframes animate {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+        100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+    }
+
+    .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+    .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+    .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+
+    /* --- Login Container --- */
+    .login-wrapper { width: 100%; max-width: 550px; padding: 20px; z-index: 10; }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        color: white;
+    }
+
+    .login-header { text-align: center; margin-bottom: 25px; }
+    .login-header h2 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(to right, #fff, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .login-header p { font-size: 0.9rem; color: #cbd5e1; }
+
+    .login-type-buttons {
+        display: flex; gap: 10px; margin-bottom: 25px;
+        background: rgba(0, 0, 0, 0.3); padding: 6px; border-radius: 12px;
+    }
+
+    .type-btn {
+        flex: 1; padding: 12px; border: none; border-radius: 8px;
+        background: transparent; color: #94a3b8; cursor: pointer;
+        font-weight: 600; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+
+    .type-btn.active {
+        background: #4f46e5; color: white;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Form Fields */
+    .input-box { position: relative; margin-bottom: 20px; }
+    .input-row { display: flex; gap: 15px; }
+    .half { flex: 1; }
+
+    .input-box input, .input-box select {
+        width: 100%; padding: 12px 40px 12px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px; color: white; outline: none; font-size: 0.9rem;
+    }
+
+    .input-box span {
+        position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+        color: #94a3b8; pointer-events: none; transition: 0.3s; font-size: 0.9rem;
+    }
+
+    .input-box input:focus ~ span, .input-box input:valid ~ span,
+    .input-box select:focus ~ span, .input-box select:valid ~ span,
+    .input-box input[type="date"] ~ span {
+        top: -12px; left: 10px; font-size: 0.75rem; color: #818cf8;
+        background: #111827; padding: 0 6px; border-radius: 4px;
+    }
+
+    .input-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #6366f1; }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+    select option { background: #1e293b; color: white; }
+
+    .btn.primary {
+        background: #4f46e5; color: white; padding: 15px; border: none;
+        border-radius: 12px; width: 100%; font-weight: 700; cursor: pointer;
+        transition: 0.3s; margin-top: 10px; font-size: 1rem;
+    }
+
+    .btn.primary:hover { background: #4338ca; transform: translateY(-2px); }
+    .hidden { display: none; }
+    .back-link { text-align: center; margin-top: 20px; }
+    .back-link a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+    <div class="area"><ul class="circles"><li></li><li></li><li></li><li></li><li></li></ul></div>
+    
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>GyaanKosh</h2>
+                <p id="portal-text">Student Library Access</p>
+            </div>
+
+            <div class="login-type-buttons">
+                <button type="button" class="type-btn active" onclick="switchUser('student')" id="studentBtn">
+                    <i class="fa-solid fa-user-graduate"></i> Student
+                </button>
+                <button type="button" class="type-btn" onclick="switchUser('librarian')" id="adminBtn">
+                    <i class="fa-solid fa-user-tie"></i> Librarian
+                </button>
+            </div>
+
+            <form id="mainForm">
+                <div id="studentSection">
+                    <div class="input-box">
+                        <input type="text" id="sName" required>
+                        <span>Student Full Name</span>
+                        <i class="fa-solid fa-user input-icon"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="sId" required>
+                        <span>Student ID</span>
+                        <i class="fa-solid fa-hashtag input-icon"></i>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="half">
+                            <div class="input-box">
+                                <select id="branch" required onchange="populateCourses()">
+                                    <option value="" disabled selected></option>
+                                    <option value="CSE">Computer Science Engineering</option>
+                                    <option value="Mechanical">Mechanical Engineering</option>
+                                    <option value="Civil">Civil Engineering</option>
+                                    <option value="Electronics">Electronics Engineering</option>
+                                    <option value="Electrical">Electrical Engineering</option>
+                                    <option value="DataScience">Data Science</option>
+                                    <option value="AIML">AIML</option>
+                                    <option value="AIDS">AIDS</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
+                                    <option value="Management">Management Science</option>
+                                    <option value="MBA">MBA</option>
+                                    <option value="MCA">MCA</option>
+                                </select>
+                                <span>Branch</span>
+                                <i class="fa-solid fa-code-branch input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="half">
+                            <div class="input-box">
+                                <select id="course" required>
+                                    <option value="" disabled selected></option>
+                                </select>
+                                <span>Course</span>
+                                <i class="fa-solid fa-graduation-cap input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box half">
+                            <input type="text" id="yearSem" required>
+                            <span>Year/Semester</span>
+                            <i class="fa-solid fa-clock input-icon"></i>
+                        </div>
+                        <div class="input-box half">
+                            <input type="date" id="enrollDate" required>
+                            <span>Enrollment Date</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="librarianSection" class="hidden">
+                    <div class="input-box">
+                        <input type="text" id="libName">
+                        <span>Librarian Name</span>
+                        <i class="fa-solid fa-user-tie input-icon"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" id="libEmail">
+                        <span>Email ID</span>
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-box half">
+                            <input type="text" id="libEmpId">
+                            <span>Employee ID</span>
+                            <i class="fa-solid fa-id-badge input-icon"></i>
+                        </div>
+                        <div class="input-box half">
+                            <select id="designation">
+                                <option value="" disabled selected></option>
+                                <option value="Librarian">Librarian</option>
+                                <option value="Assistant">Assistant Librarian</option>
+                            </select>
+                            <span>Designation</span>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="date" id="libJoinDate">
+                        <span>Joining Date</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn primary" id="btnText" onclick="alert('Successfully registered')">Login as Student</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mapping Branch -> Relevant Courses
+        const branchData = {
+            "CSE": ["B-Tech", "M-Tech", "Diploma", "Ph.D"],
+            "Mechanical": ["B-Tech", "M-Tech", "Diploma"],
+            "Civil": ["B-Tech", "M-Tech", "Diploma"],
+            "Electronics": ["B-Tech", "M-Tech", "Diploma"],
+            "Electrical": ["B-Tech", "M-Tech", "Diploma"],
+            "DataScience": ["B-Tech (DS)", "M-Tech (DS)", "Certification"],
+            "AIML": ["B-Tech (AIML)", "M-Tech (AIML)"],
+            "AIDS": ["B-Tech (AIDS)", "M-Tech (AIDS)"],
+            "Cybersecurity": ["B-Tech (CS)", "Certification"],
+            "Management": ["BMS", "BBA", "MMS"],
+            "MBA": ["MBA (General)", "MBA (Finance)", "MBA (HR)"],
+            "MCA": ["MCA (Regular)", "MCA (Lateral)"]
+        };
+
+        function populateCourses() {
+            const branchSelect = document.getElementById('branch');
+            const courseSelect = document.getElementById('course');
+            const selectedBranch = branchSelect.value;
+
+            courseSelect.innerHTML = '<option value="" disabled selected></option>';
+
+            if (branchData[selectedBranch]) {
+                branchData[selectedBranch].forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                });
+            }
+        }
+
+        function switchUser(role) {
+            const studentSec = document.getElementById('studentSection');
+            const librarianSec = document.getElementById('librarianSection');
+            const portalText = document.getElementById('portal-text');
+            const btnText = document.getElementById('btnText');
+            
+            document.getElementById('studentBtn').classList.toggle('active', role === 'student');
+            document.getElementById('adminBtn').classList.toggle('active', role === 'librarian');
+
+            if (role === 'student') {
+                studentSec.classList.remove('hidden');
+                librarianSec.classList.add('hidden');
+                portalText.innerText = "Student Library Access";
+                btnText.innerText = "Login as Student";
+                toggleRequired('studentSection', true);
+                toggleRequired('librarianSection', false);
+            } else {
+                studentSec.classList.add('hidden');
+                librarianSec.classList.remove('hidden');
+                portalText.innerText = "Librarian Administration";
+                btnText.innerText = "Librarian Login";
+                toggleRequired('studentSection', false);
+                toggleRequired('librarianSection', true);
+            }
+        }
+
+        function toggleRequired(sectionId, isRequired) {
+            const inputs = document.getElementById(sectionId).querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (isRequired) input.setAttribute('required', '');
+                else input.removeAttribute('required');
+            });
+        }
+    </script>
+</body>
+</html>

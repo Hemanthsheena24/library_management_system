@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | GyaanKosh</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="logo">
+            <i class="fa-solid fa-book-open-reader"></i> GyaanKosh<span>Student</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="switchTab('my-books', this)">My Books</a></li>
+            <li><a href="#" onclick="switchTab('catalog', this)">Browse Catalog</a></li>
+            <li><a href="#" style="color: #ef4444;" onclick="logout()">Logout</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Section: My Books -->
+        <section id="my-books-section" class="dashboard-section active">
+            <div class="section-header">
+                <h2>My Issued Books</h2>
+                <p>Books currently issued to you.</p>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myBooksTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Catalog -->
+        <section id="catalog-section" class="dashboard-section" style="display: none;">
+            <div class="section-header">
+                <h2>Library Catalog</h2>
+                <div class="search-box">
+                    <input type="text" placeholder="Search books..." id="searchInput">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+            <div class="book-grid" id="catalogGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+</html>
