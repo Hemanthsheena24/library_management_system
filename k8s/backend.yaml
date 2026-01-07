@@ -28,11 +28,8 @@ spec:
             configMapKeyRef:
               name: app-config
               key: NODE_ENV
-        - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: MONGODB_URI
+        - name: MONGO_URI
+          value: "mongodb://admin:admin123@mongodb:27017/library_management?authSource=admin"
         - name: PORT
           value: "5000"
         resources:

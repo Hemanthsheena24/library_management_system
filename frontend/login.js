@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const endpoint =
             currentRole === "student"
-                ? "http://localhost:5000/api/students/profile"
-                : "http://localhost:5000/api/admin/profile";
+                ? "/api/students/profile"
+                : "/api/admin/profile";
 
         const basicAuth = btoa(email + ":" + password);
 

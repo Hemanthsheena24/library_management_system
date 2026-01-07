@@ -40,7 +40,7 @@ window.switchTab = function (tabName, element) {
 function fetchRequests() {
     const auth = sessionStorage.getItem("adminAuth");
 
-    fetch("http://localhost:5000/api/requests", {
+    fetch("/api/requests", {
         headers: {
             Authorization: "Basic " + auth,
         },
@@ -110,7 +110,7 @@ function fetchRequests() {
 window.approveRequest = function (requestId) {
     const auth = sessionStorage.getItem("adminAuth");
 
-    fetch(`http://localhost:5000/api/requests/approve/${requestId}`, {
+    fetch(`/api/requests/approve/${requestId}`, {
         method: "POST",
         headers: {
             Authorization: "Basic " + auth,
@@ -128,7 +128,7 @@ window.approveRequest = function (requestId) {
 window.rejectRequest = function (requestId) {
     const auth = sessionStorage.getItem("adminAuth");
 
-    fetch(`http://localhost:5000/api/requests/reject/${requestId}`, {
+    fetch(`/api/requests/reject/${requestId}`, {
         method: "POST",
         headers: {
             Authorization: "Basic " + auth,
@@ -146,7 +146,7 @@ window.rejectRequest = function (requestId) {
    FETCH BOOK CATALOG
 ========================= */
 function fetchBooks() {
-    fetch("http://localhost:5000/api/books")
+    fetch("/api/books")
         .then(res => res.json())
         .then(books => {
             const grid = document.getElementById("bookGrid");
@@ -203,7 +203,7 @@ window.addNewBook = function () {
     saveBtn.innerText = "Saving...";
     saveBtn.style.opacity = "0.7";
 
-    fetch("http://localhost:5000/api/books", {
+    fetch("/api/books", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -235,7 +235,7 @@ window.deleteBook = function (bookId) {
 
     if (!confirm("Delete this book?")) return;
 
-    fetch(`http://localhost:5000/api/books/${bookId}`, {
+    fetch(`/api/books/${bookId}`, {
         method: "DELETE",
         headers: {
             Authorization: "Basic " + auth,

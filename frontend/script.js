@@ -79,7 +79,7 @@ function signup(event) {
     const year = document.getElementById("year").value;
     const mobile = document.getElementById("mobile").value;
 
-    fetch("http://localhost:5000/api/students/register", {
+    fetch("/api/students/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

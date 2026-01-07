@@ -32,7 +32,7 @@ window.switchTab = function (tabName, element) {
    FETCH CATALOG (REAL)
 ========================= */
 function fetchCatalog() {
-    fetch("http://localhost:5000/api/books")
+    fetch("/api/books")
         .then(res => res.json())
         .then(books => {
             const grid = document.getElementById("catalogGrid");
@@ -74,7 +74,7 @@ function fetchCatalog() {
 window.requestBook = function (bookId) {
     const auth = sessionStorage.getItem("studentAuth");
 
-    fetch("http://localhost:5000/api/requests/create", {
+    fetch("/api/requests/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -96,7 +96,7 @@ window.requestBook = function (bookId) {
 function fetchMyBooks() {
     const auth = sessionStorage.getItem("studentAuth");
 
-    fetch("http://localhost:5000/api/requests/my", {
+    fetch("/api/requests/my", {
         headers: {
             Authorization: "Basic " + auth,
         },
@@ -146,7 +146,7 @@ function fetchMyBooks() {
 window.returnBook = function (requestId) {
     const auth = sessionStorage.getItem("studentAuth");
 
-    fetch(`http://localhost:5000/api/requests/return/${requestId}`, {
+    fetch(`/api/requests/return/${requestId}`, {
         method: "POST",
         headers: {
             Authorization: "Basic " + auth,

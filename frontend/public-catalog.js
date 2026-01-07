@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', fetchCatalog);
 
 function fetchCatalog() {
-    fetch("http://localhost:5000/api/books")
+    fetch("/api/books")
         .then(res => res.json())
         .then(renderCatalog)
         .catch(err => console.error(err));

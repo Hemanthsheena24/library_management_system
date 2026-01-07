@@ -47,6 +47,9 @@ spec:
         volumeMounts:
         - name: mongodb-storage
           mountPath: /data/db
+        - name: mongo-init
+          mountPath: /docker-entrypoint-initdb.d/init-mongo.js
+          subPath: init-mongo.js
         resources:
           requests:
             memory: "256Mi"
@@ -58,6 +61,12 @@ spec:
           exec:
             command:
             - mongosh
+            - --username
+            - admin
+            - --password
+            - admin123
+            - --authenticationDatabase
+            - admin
             - --eval
             - "db.adminCommand('ping')"
           initialDelaySeconds: 30
@@ -68,6 +77,12 @@ spec:
           exec:
             command:
             - mongosh
+            - --username
+            - admin
+            - --password
+            - admin123
+            - --authenticationDatabase
+            - admin
             - --eval
             - "db.adminCommand('ping')"
           initialDelaySeconds: 10
@@ -78,6 +93,9 @@ spec:
       - name: mongodb-storage
         persistentVolumeClaim:
           claimName: mongodb-pvc
+      - name: mongo-init
+        configMap:
+          name: mongo-init
 ---
 apiVersion: v1
 kind: Service
