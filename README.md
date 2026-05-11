@@ -89,7 +89,9 @@
   This project is a containerized Library Management System deployed on a Minikube cluster, featuring a Node.js backend and a MongoDB database with Persistent Volume Claims (PVC) for reliable data storage. By using Docker for containerization and Kubernetes for orchestration, the system ensures a self-healing, scalable environment for managing book requests and administrative approvals. This setup demonstrates a modern DevOps workflow, moving from local development to a cloud-native deployment.
 </p>
 <p>
-  <a href="https://github.com/anuragsingh212/GyaanKosh---A-Kubernetes-and-Docker-based-Library-Management-System/blob/main/SURE%20Trust%20Project%20Document.pdf" target="_blank"><strong>→ View Full Project Report</strong></a>
+ <a href="https://github.com/Hemanthsheena24/library_management_system/blob/main/SURE%20Trust%20Project%20Document.pdf" target="_blank">
+  <strong>→ View Full Project Report</strong>
+</a>
 </p>
 
 <hr style="height:1px; border-top:1px solid #ccc; width:80%;" />
