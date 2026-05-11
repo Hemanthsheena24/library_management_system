@@ -142,7 +142,7 @@ During my internship period, I participated in multiple community-oriented and p
 ### **Photos**
 
 <div align="center">
-<img src=Hemanth Kumar M S-G6CC_Community Services/Helping_Senior_Citizen.jpg.jpeg" alt="Community Service Photo 1" width="30%">
+<img src="https://raw.githubusercontent.com/Hemanthsheena24/library_management_system/main/Hemanth%20Kumar%20M%20S-G6CC_Community%20Services/Helping_Senior_Citizen.jpg.jpeg" width="30%">
 <img src="https://github.com/anuragsingh212/GyaanKosh---A-Kubernetes-and-Docker-based-Library-Management-System/blob/main/Anurag-G6CC_Community%20Services/Plantation.jpg" alt="Community Service Photo 2" width="30%">
 </div>
 
